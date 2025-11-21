@@ -3,7 +3,14 @@
     "version": ">= 9.0.0"
   },
   "build": {
-    "projectDir": "apps/mobile",
+    "base": {
+      "android": {
+        "projectDir": "apps/mobile"
+      },
+      "ios": {
+        "projectDir": "apps/mobile"
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal"
