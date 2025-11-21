@@ -3,20 +3,18 @@
     "version": ">= 9.0.0"
   },
   "build": {
+    "projectDir": "apps/mobile",
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "workingDir": "apps/mobile"
+      "distribution": "internal"
     },
     "preview": {
       "distribution": "internal",
-      "workingDir": "apps/mobile",
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
-      "workingDir": "apps/mobile",
       "android": {
         "buildType": "apk"
       }
