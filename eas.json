@@ -6,30 +6,19 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "android": {
-        "projectDir": "apps/mobile"
-      },
-      "ios": {
-        "projectDir": "apps/mobile"
-      }
+      "projectDir": "apps/mobile"
     },
     "preview": {
       "distribution": "internal",
+      "projectDir": "apps/mobile",
       "android": {
-        "buildType": "apk",
-        "projectDir": "apps/mobile"
-      },
-      "ios": {
-        "projectDir": "apps/mobile"
+        "buildType": "apk"
       }
     },
     "production": {
+      "projectDir": "apps/mobile",
       "android": {
-        "buildType": "apk",
-        "projectDir": "apps/mobile"
-      },
-      "ios": {
-        "projectDir": "apps/mobile"
+        "buildType": "apk"
       }
     }
   },
