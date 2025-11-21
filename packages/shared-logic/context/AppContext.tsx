@@ -171,7 +171,7 @@ export const CommunityProvider: React.FC<{ children: ReactNode }> = ({ children 
         
         genericSave<MarketplaceItem>(marketplaceItems, setMarketplaceItems, newItemData, {}, 'الإعلان');
         showToast('تم إرسال إعلانك للمراجعة.');
-    }, [marketplaceItems, currentPublicUser, showToast]);
+    }, [marketplaceItems, currentPublicUser, showToast, genericSave]);
 
     const handleDeleteMarketplaceItem = useCallback((itemId: number) => {
         genericDelete(setMarketplaceItems, itemId, 'إعلان البيع');
@@ -204,7 +204,7 @@ export const CommunityProvider: React.FC<{ children: ReactNode }> = ({ children 
         
         genericSave<JobPosting>(jobPostings, setJobPostings, newJobData, {}, 'إعلان الوظيفة');
         showToast('تم إرسال إعلان الوظيفة للمراجعة.');
-    }, [jobPostings, currentPublicUser, showToast]);
+    }, [jobPostings, currentPublicUser, showToast, genericSave]);
     
     const handleDeleteJobPosting = useCallback((jobId: number) => {
         genericDelete(setJobPostings, jobId, 'إعلان الوظيفة');
@@ -231,7 +231,7 @@ export const CommunityProvider: React.FC<{ children: ReactNode }> = ({ children 
         };
         genericSave<LostAndFoundItem>(lostAndFoundItems, setLostAndFoundItems, newItemData, {}, 'البلاغ');
         showToast('تم إرسال بلاغك للمراجعة.');
-    }, [lostAndFoundItems, currentPublicUser, showToast]);
+    }, [lostAndFoundItems, currentPublicUser, showToast, genericSave]);
     
     const handleUpdateLostAndFoundItemStatus = useCallback((itemId: number, status: ListingStatus, rejectionReason?: string) => {
         setLostAndFoundItems(prev => prev.map(i => i.id === itemId ? { ...i, status, rejectionReason: status === 'rejected' ? rejectionReason : undefined } : i));
@@ -256,7 +256,7 @@ export const CommunityProvider: React.FC<{ children: ReactNode }> = ({ children 
         };
         genericSave<ExclusiveOffer>(offers, setOffers, newOfferData, {}, 'العرض');
         showToast('تم إرسال عرضك للمراجعة.');
-    }, [offers, currentPublicUser, showToast]);
+    }, [offers, currentPublicUser, showToast, genericSave]);
 
     const handleDeleteOffer = useCallback((offerId: number) => {
         genericDelete(setOffers, offerId, 'العرض');

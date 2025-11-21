@@ -1,6 +1,7 @@
 import React from 'react';
 import { WhatsAppIcon } from './Icons';
-import { CONTACT_INFO } from '../../../packages/shared-logic/config';
+// FIX: Corrected import path for monorepo structure
+import { CONTACT_INFO } from '@helio/shared-logic';
 
 const WhatsAppFab: React.FC = () => {
     return (

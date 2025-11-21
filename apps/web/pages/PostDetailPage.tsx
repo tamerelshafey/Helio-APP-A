@@ -1,12 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '@helio/shared-logic';
+import { useAuth, useCommunity } from '@helio/shared-logic';
 import Spinner from '../components/common/Spinner';
 import { ArrowLeftIcon, HandThumbUpIcon, ChatBubbleOvalLeftEllipsisIcon, TrashIcon } from '../components/common/Icons';
 import PageBanner from '../components/common/PageBanner';
 import type { Post } from '@helio/shared-logic';
 import ShareButton from '../components/common/ShareButton';
-import { useCommunity } from '@helio/shared-logic';
 
 const PollDisplay: React.FC<{ post: Post }> = ({ post }) => {
     const { voteOnPoll } = useCommunity();

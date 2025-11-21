@@ -64,7 +64,7 @@ export const UsersProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             setAdmins(prev => prev.map(a => a.id === adminData.id ? { ...a, ...adminData } : a));
             showToast('تم تحديث بيانات المدير.');
         } else {
-            const newAdmin: AdminUser = { id: Math.max(...admins.map(a => a.id), 0) + 1, ...adminData };
+            const newAdmin: AdminUser = { id: Math.max(...admins.map(a => a.id), 0) + 1, ...adminData } as AdminUser;
             setAdmins(prev => [newAdmin, ...prev]);
             showToast('تمت إضافة المدير.');
         }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useNews } from '@helio/shared-logic';
-import { useUI } from '@helio/shared-logic';
+import { useNews, useUI } from '@helio/shared-logic';
 import { ArrowLeftIcon, BellIcon, TrashIcon } from '../components/common/Icons';
 import EmptyState from '../components/common/EmptyState';
 import PageBanner from '../components/common/PageBanner';

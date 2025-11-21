@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { useCommunity } from '../../../packages/shared-logic/context/AppContext';
-import type { JobPosting } from '../../../packages/shared-logic/types';
+// FIX: Corrected import paths for monorepo structure
+import { useCommunity } from '@helio/shared-logic';
+import type { JobPosting } from '@helio/shared-logic';
 import { BriefcaseIcon, MagnifyingGlassIcon, MapPinIcon } from '../common/Icons';
 import EmptyState from '../common/EmptyState';
 

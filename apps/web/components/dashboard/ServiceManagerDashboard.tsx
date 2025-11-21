@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useData } from '@helio/shared-logic';
-import { useServices } from '@helio/shared-logic';
+// FIX: Corrected import paths for monorepo structure
+import { useData, useServices } from '@helio/shared-logic';
 import KpiCard from '../common/KpiCard';
 import { WrenchScrewdriverIcon, StarIcon, ChatBubbleOvalLeftIcon, ShieldExclamationIcon, RectangleGroupIcon, DocumentDuplicateIcon, EyeIcon, ChartPieIcon } from '../common/Icons';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';

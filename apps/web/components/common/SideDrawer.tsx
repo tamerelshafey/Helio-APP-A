@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+// FIX: Corrected import path for monorepo structure
 import { useAuth } from '@helio/shared-logic';
 import Logo from './Logo';
 import { 

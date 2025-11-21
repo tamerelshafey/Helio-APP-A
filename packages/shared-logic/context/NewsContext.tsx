@@ -20,7 +20,7 @@ export const NewsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
     const [advertisements, setAdvertisements] = useState<Advertisement[]>(mockAdvertisements);
 
-    const genericSave = <T extends { id?: number }>(
+    const genericSave = useCallback(<T extends { id?: number }>(
         items: T[],
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         newItemData: Partial<T> & { id?: number },
@@ -39,9 +39,9 @@ export const NewsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setItems(prev => [newItem as T, ...prev]);
             showToast(`تمت إضافة ${itemName}.`);
         }
-    };
+    }, [showToast]);
 
-    const genericDelete = <T extends {id: number}>(
+    const genericDelete = useCallback(<T extends {id: number}>(
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         itemId: number,
         itemType: string
@@ -54,7 +54,7 @@ export const NewsProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 showToast(`تم حذف ${itemType}.`);
             }
         );
-    };
+    }, [showConfirmation, showToast]);
     
     const handleSaveNews = useCallback((newsItem: Omit<News, 'id' | 'date' | 'author' | 'views'> & { id?: number }) => {
         genericSave<News>(news, setNews, newsItem, {author: 'Admin', date: new Date().toISOString().split('T')[0], views: 0 }, 'الخبر');

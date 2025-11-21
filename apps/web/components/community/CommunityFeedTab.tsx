@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../packages/shared-logic/context/AuthContext';
-import { useCommunity } from '../../../packages/shared-logic/context/AppContext';
-import type { Post, PostCategory, Circle } from '../../../packages/shared-logic/types';
+// FIX: Corrected import paths for monorepo structure
+import { useAuth, useCommunity } from '@helio/shared-logic';
+import type { Post, PostCategory, Circle } from '@helio/shared-logic';
 import { ChatBubbleOvalLeftEllipsisIcon, HandThumbUpIcon, PinIcon } from '../common/Icons';
 import EmptyState from '../common/EmptyState';
 

@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 // FIX: Corrected import path for monorepo structure
-import { useUsers } from '@helio/shared-logic';
-// FIX: Corrected import path for monorepo structure
-import { useServices } from '@helio/shared-logic';
-// FIX: Corrected import path for monorepo structure
-import { useProperties } from '@helio/shared-logic';
-// FIX: Corrected import path for monorepo structure
-import { useNews } from '@helio/shared-logic';
+import { useUsers, useServices, useProperties, useNews } from '@helio/shared-logic';
 // FIX: Corrected import path for monorepo structure
 import type { SearchResult } from '@helio/shared-logic';
 import { MagnifyingGlassIcon, XMarkIcon, WrenchScrewdriverIcon, HomeModernIcon, NewspaperIcon, UserGroupIcon } from './Icons';
@@ -56,7 +50,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                 type: 'خدمة',
                 title: s.name,
                 subtitle: s.address,
-                link: `/services/detail/${s.id}`,
+                link: `/service/${s.id}`,
                 icon: <WrenchScrewdriverIcon className="w-5 h-5 text-cyan-500" />
             }));
 

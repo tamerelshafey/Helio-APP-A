@@ -1,10 +1,8 @@
 import React, { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// FIX: Corrected import paths for monorepo structure
 import { useCommunity, useServices, useAuth } from '@helio/shared-logic';
 import PageBanner from '../components/common/PageBanner';
 import { TagIcon, CalendarDaysIcon } from '../components/common/Icons';
-// FIX: Corrected import paths for monorepo structure
 import type { ExclusiveOffer, Service } from '@helio/shared-logic';
 import EmptyState from '../components/common/EmptyState';
 

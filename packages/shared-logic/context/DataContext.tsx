@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import { 
     mockEmergencyContacts, mockServiceGuides,
     mockPublicPagesContent,
@@ -29,7 +29,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [publicPagesContent, setPublicPagesContent] = useState<PublicPagesContent>(mockPublicPagesContent);
 
     // --- GENERIC HELPERS ---
-    const genericSave = <T extends { id?: number }>(
+    const genericSave = useCallback(<T extends { id?: number }>(
         items: T[],
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         newItemData: Partial<T> & { id?: number },
@@ -48,9 +48,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setItems(prev => [newItem as T, ...prev]);
             showToast(`تمت إضافة ${itemName}.`);
         }
-    };
+    }, [showToast]);
     
-    const genericDelete = <T extends {id: number}>(
+    const genericDelete = useCallback(<T extends {id: number}>(
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         itemId: number,
         itemType: string
@@ -63,7 +63,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 showToast(`تم حذف ${itemType}.`);
             }
         );
-    };
+    }, [showConfirmation, showToast]);
         
     // --- OTHER DATA HANDLERS ---
     const handleSaveEmergencyContact = useCallback((contact: Omit<EmergencyContact, 'id'> & { id?: number }) => genericSave<EmergencyContact>(emergencyContacts, setEmergencyContacts, contact, {}, 'رقم الطوارئ'), [emergencyContacts, genericSave]);

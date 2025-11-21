@@ -3,11 +3,7 @@ import React, { useMemo } from 'react';
 import type { Activity } from '@helio/shared-logic';
 import { WrenchScrewdriverIcon, ShieldExclamationIcon, NewspaperIcon, HomeModernIcon } from '../common/Icons';
 // FIX: Corrected import path for monorepo structure
-import { useServices } from '@helio/shared-logic';
-// FIX: Corrected import path for monorepo structure
-import { useProperties } from '@helio/shared-logic';
-// FIX: Corrected import path for monorepo structure
-import { useNews } from '@helio/shared-logic';
+import { useServices, useProperties, useNews } from '@helio/shared-logic';
 
 const formatRelativeTime = (dateString: string) => {
     const date = new Date(dateString);

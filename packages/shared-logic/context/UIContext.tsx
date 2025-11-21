@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import type { ToastMessage, UIContextType, Theme, ConfirmationState, GeolocationState } from '../types';
+import { storage } from '../utils/storage';
 
 const UIContext = createContext<UIContextType | undefined>(undefined);
 
@@ -22,19 +23,27 @@ export const UIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [toasts, setToasts] = useState<ToastMessage[]>([]);
     
     const [theme, setThemeState] = useState<Theme>(() => {
-        const storedTheme = localStorage.getItem('theme');
+        const storedTheme = storage.getItem('theme');
         if (storedTheme === 'light' || storedTheme === 'dark' || storedTheme === 'system') {
             return storedTheme;
         }
         return 'system'; // Default to system preference
     });
     
-    const [isSystemDark, setIsSystemDark] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const [isSystemDark, setIsSystemDark] = useState(false);
+    
+    useEffect(() => {
+        // This effect should only run on the client side
+        if (typeof window !== 'undefined') {
+            setIsSystemDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        }
+    }, []);
+
     const [confirmation, setConfirmation] = useState<ConfirmationState>(initialConfirmationState);
 
     const [dismissedNotificationIds, setDismissedNotificationIds] = useState<Set<number>>(() => {
         try {
-            const item = window.localStorage.getItem('dismissedNotificationIds');
+            const item = storage.getItem('dismissedNotificationIds');
             return item ? new Set(JSON.parse(item)) : new Set();
         } catch (error) {
             console.error(error);
@@ -49,15 +58,17 @@ export const UIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     });
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = (e: MediaQueryListEvent) => setIsSystemDark(e.matches);
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
+        if (typeof window !== 'undefined') {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const handleChange = (e: MediaQueryListEvent) => setIsSystemDark(e.matches);
+            mediaQuery.addEventListener('change', handleChange);
+            return () => mediaQuery.removeEventListener('change', handleChange);
+        }
     }, []);
 
     useEffect(() => {
         try {
-            window.localStorage.setItem('dismissedNotificationIds', JSON.stringify(Array.from(dismissedNotificationIds)));
+            storage.setItem('dismissedNotificationIds', JSON.stringify(Array.from(dismissedNotificationIds)));
         } catch (error) {
             console.error(error);
         }
@@ -69,12 +80,14 @@ export const UIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }, [theme, isSystemDark]);
 
     useEffect(() => {
-        const root = window.document.documentElement;
-        root.classList.toggle('dark', isDarkMode);
+        if (typeof window !== 'undefined') {
+            const root = window.document.documentElement;
+            root.classList.toggle('dark', isDarkMode);
+        }
     }, [isDarkMode]);
 
     const setTheme = useCallback((newTheme: Theme) => {
-        localStorage.setItem('theme', newTheme);
+        storage.setItem('theme', newTheme);
         setThemeState(newTheme);
     }, []);
 

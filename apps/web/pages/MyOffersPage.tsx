@@ -1,7 +1,5 @@
 import React from 'react';
-import { useCommunity } from '@helio/shared-logic';
-import { useAuth } from '@helio/shared-logic';
-import { useServices } from '@helio/shared-logic';
+import { useCommunity, useAuth, useServices } from '@helio/shared-logic';
 import { Link } from 'react-router-dom';
 import PageBanner from '../components/common/PageBanner';
 import { TagIcon, QrCodeIcon } from '../components/common/Icons';

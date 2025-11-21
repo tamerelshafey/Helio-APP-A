@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import type { News } from '../../../packages/shared-logic/types';
+// FIX: Corrected import path for monorepo structure
+import type { News } from '@helio/shared-logic';
 
 const NewsCard: React.FC<{ newsItem: News }> = ({ newsItem }) => {
     return (

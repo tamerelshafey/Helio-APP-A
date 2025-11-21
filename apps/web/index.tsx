@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
+// FIX: Corrected import path for monorepo structure
 import { AppProvider } from '@helio/shared-logic';
 
 const rootElement = document.getElementById('root');

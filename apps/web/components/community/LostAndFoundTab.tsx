@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { useCommunity } from '../../../packages/shared-logic/context/AppContext';
-import type { LostAndFoundItem } from '../../../packages/shared-logic/types';
+// FIX: Corrected import paths for monorepo structure
+import { useCommunity } from '@helio/shared-logic';
+import type { LostAndFoundItem } from '@helio/shared-logic';
 import { ArchiveBoxIcon, MapPinIcon } from '../common/Icons';
 import EmptyState from '../common/EmptyState';
 

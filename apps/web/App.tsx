@@ -5,7 +5,6 @@ import ScrollToTop from './components/common/ScrollToTop';
 import ConfirmationDialog from './components/common/ConfirmationDialog';
 import BottomNav from './components/common/BottomNav';
 import SideDrawer from './components/common/SideDrawer';
-// FIX: Corrected import path for monorepo structure
 import PublicHeader from './components/common/PublicHeader';
 import PublicFooter from './components/common/PublicFooter';
 import WhatsAppFab from './components/common/WhatsAppFab';

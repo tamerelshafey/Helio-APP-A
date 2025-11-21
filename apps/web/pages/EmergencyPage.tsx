@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon, PhoneIcon, PencilSquareIcon, TrashIcon, PlusIcon, ShieldExclamationIcon } from '../components/common/Icons';
+// FIX: Corrected import paths for monorepo structure
 import type { EmergencyContact } from '@helio/shared-logic';
-import { useData } from '@helio/shared-logic';
+import { useData, useAuth } from '@helio/shared-logic';
 import Modal from '../components/common/Modal';
 import EmptyState from '../components/common/EmptyState';
 import PageBanner from '../components/common/PageBanner';
-import { useAuth } from '@helio/shared-logic';
 
 const EmergencyCard: React.FC<{ contact: EmergencyContact; onEdit: (contact: EmergencyContact) => void; onDelete: (id: number) => void; }> = ({ contact, onEdit, onDelete }) => {
     const { isAuthenticated, hasPermission } = useAuth();

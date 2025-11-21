@@ -30,7 +30,7 @@ export const TransportationProvider: React.FC<{ children: ReactNode }> = ({ chil
     const [externalRoutes, setExternalRoutes] = useState<ExternalRoute[]>(mockExternalRoutes);
     const [internalRoutes, setInternalRoutes] = useState<InternalRoute[]>(mockInternalRoutes);
 
-    const genericSave = <T extends { id?: number }>(
+    const genericSave = useCallback(<T extends { id?: number }>(
         items: T[],
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         newItemData: Partial<T> & { id?: number },
@@ -49,9 +49,9 @@ export const TransportationProvider: React.FC<{ children: ReactNode }> = ({ chil
             setItems(prev => [newItem as T, ...prev]);
             showToast(`تمت إضافة ${itemName}.`);
         }
-    };
+    }, [showToast]);
     
-    const genericDelete = <T extends {id: number}>(
+    const genericDelete = useCallback(<T extends {id: number}>(
         setItems: React.Dispatch<React.SetStateAction<T[]>>,
         itemId: number,
         itemType: string
@@ -64,7 +64,7 @@ export const TransportationProvider: React.FC<{ children: ReactNode }> = ({ chil
                 showToast(`تم حذف ${itemType}.`);
             }
         );
-    };
+    }, [showConfirmation, showToast]);
 
     const handleSaveSupervisor = useCallback((type: 'internal' | 'external', supervisor: Supervisor) => {
         if (type === 'internal') setInternalSupervisor(supervisor);

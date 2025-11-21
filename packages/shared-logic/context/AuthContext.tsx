@@ -19,12 +19,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
     const [admins] = useState<AdminUser[]>(mockAdmins);
     const [currentUser, setCurrentUser] = useState<AdminUser | null>(() => {
-        const storedUser = sessionStorage.getItem('currentUser');
+        // Note: sessionStorage is not available in React Native.
+        // A native storage solution would be needed for persistence.
+        const storedUser = (typeof window !== 'undefined') ? sessionStorage.getItem('currentUser') : null;
         return storedUser ? JSON.parse(storedUser) : null;
     });
 
     const [currentPublicUser, setCurrentPublicUser] = useState<AppUser | null>(() => {
-        const storedUser = sessionStorage.getItem('currentPublicUser');
+        const storedUser = (typeof window !== 'undefined') ? sessionStorage.getItem('currentPublicUser') : null;
         return storedUser ? JSON.parse(storedUser) : null;
     });
 
@@ -34,7 +36,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const login = useCallback((email: string, password?: string): boolean => {
         const admin = admins.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
         if (admin) {
-            sessionStorage.setItem('currentUser', JSON.stringify(admin));
+            if (typeof window !== 'undefined') sessionStorage.setItem('currentUser', JSON.stringify(admin));
             setCurrentUser(admin);
             showToast(`أهلاً بعودتك، ${admin.name}!`);
             return true;
@@ -43,7 +45,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [admins, showToast]);
 
     const logout = useCallback(() => {
-        sessionStorage.removeItem('currentUser');
+        if (typeof window !== 'undefined') sessionStorage.removeItem('currentUser');
         setCurrentUser(null);
         showToast('تم تسجيل خروجك بنجاح.');
     }, [showToast]);
@@ -65,7 +67,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 showToast('هذا الحساب محظور ولا يمكنه تسجيل الدخول.', 'error');
                 return false;
             }
-            sessionStorage.setItem('currentPublicUser', JSON.stringify(user));
+            if (typeof window !== 'undefined') sessionStorage.setItem('currentPublicUser', JSON.stringify(user));
             setCurrentPublicUser(user);
             showToast(`أهلاً بعودتك، ${user.name}!`);
             return true;
@@ -75,7 +77,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [users, showToast]);
 
     const publicLogout = useCallback(() => {
-        sessionStorage.removeItem('currentPublicUser');
+        if (typeof window !== 'undefined') sessionStorage.removeItem('currentPublicUser');
         setCurrentPublicUser(null);
         showToast('تم تسجيل خروجك بنجاح.');
     }, [showToast]);
@@ -96,7 +98,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             joinDate: new Date().toISOString().split('T')[0],
         };
         setUsers(prev => [newUser, ...prev]);
-        sessionStorage.setItem('currentPublicUser', JSON.stringify(newUser));
+        if (typeof window !== 'undefined') sessionStorage.setItem('currentPublicUser', JSON.stringify(newUser));
         setCurrentPublicUser(newUser);
         showToast(`مرحباً بك، ${newUser.name}! تم إنشاء حسابك بنجاح.`);
         return true;
@@ -104,20 +106,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const updateProfile = useCallback((updatedData: Omit<AppUser, 'joinDate' | 'status' | 'password' | 'role'>) => {
         if (!currentPublicUser) return;
-        
-        const userToUpdate = users.find(u => u.id === updatedData.id);
-        if (!userToUpdate) return;
-        
-        const finalUser: AppUser = { 
-            ...userToUpdate, 
-            name: updatedData.name,
-            email: updatedData.email,
-            avatar: updatedData.avatar,
-        };
+        const finalUser = { ...currentPublicUser, ...updatedData };
 
         setUsers(prev => prev.map(u => u.id === finalUser.id ? finalUser : u));
         setCurrentPublicUser(finalUser);
-        sessionStorage.setItem('currentPublicUser', JSON.stringify(finalUser));
+        if (typeof window !== 'undefined') sessionStorage.setItem('currentPublicUser', JSON.stringify(finalUser));
         showToast('تم تحديث ملفك الشخصي بنجاح!');
     }, [users, currentPublicUser, showToast]);
 

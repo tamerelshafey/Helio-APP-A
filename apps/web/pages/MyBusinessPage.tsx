@@ -1,14 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { useAuth } from '@helio/shared-logic';
-import { useServices } from '@helio/shared-logic';
-import { useCommunity } from '@helio/shared-logic';
+import { useAuth, useServices, useCommunity } from '@helio/shared-logic';
 import { Link } from 'react-router-dom';
 import { BuildingStorefrontIcon, TagIcon, ChatBubbleOvalLeftIcon, StarIcon, PlusIcon, PencilSquareIcon, TrashIcon, ClockIcon, CheckCircleIcon, XCircleIcon, ChatBubbleLeftRightIcon } from '../components/common/Icons';
 import PageBanner from '../components/common/PageBanner';
 import type { ExclusiveOffer, Service, Review, ListingStatus } from '@helio/shared-logic';
 import Modal from '../components/common/Modal';
-import { InputField, TextareaField } from '../components/common/FormControls';
-import ImageUploader from '../components/common/ImageUploader';
 import EmptyState from '../components/common/EmptyState';
 import StatusBadge from '../components/common/StatusBadge';
 import OfferForm from '../components/business/OfferForm';
@@ -157,7 +153,7 @@ const MyBusinessPage: React.FC = () => {
             </div>
             
             <Modal isOpen={isOfferModalOpen} onClose={() => setOfferModalOpen(false)} title={editingOffer ? "تعديل العرض" : "إضافة عرض جديد"}>
-                <OfferForm onClose={() => setOfferModalOpen(false)} onSave={(data) => { handleSaveOffer(data); setOfferModalOpen(false); }} services={myServices} offer={editingOffer} />
+                <OfferForm onClose={() => setOfferModalOpen(false)} onSave={handleSaveOffer} services={myServices} offer={editingOffer} />
             </Modal>
             
             {replyingToReview && (
