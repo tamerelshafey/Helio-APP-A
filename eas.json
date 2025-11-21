@@ -3,7 +3,9 @@
     "version": ">= 9.0.0"
   },
   "build": {
-    "base": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
       "android": {
         "projectDir": "apps/mobile"
       },
@@ -11,22 +13,23 @@
         "projectDir": "apps/mobile"
       }
     },
-    "development": {
-      "extends": "base",
-      "developmentClient": true,
-      "distribution": "internal"
-    },
     "preview": {
-      "extends": "base",
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "projectDir": "apps/mobile"
+      },
+      "ios": {
+        "projectDir": "apps/mobile"
       }
     },
     "production": {
-      "extends": "base",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "projectDir": "apps/mobile"
+      },
+      "ios": {
+        "projectDir": "apps/mobile"
       }
     }
   },
