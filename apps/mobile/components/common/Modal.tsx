@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
-// FIX: Corrected import for XMarkIcon from local Icons file
 import { XMarkIcon } from '../Icons';
 
 interface AppModalProps {

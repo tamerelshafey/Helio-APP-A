@@ -1,7 +1,7 @@
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import type { ListingStatus, UserStatus } from '@helio/shared-logic';
 import { ClockIcon, CheckCircleIcon, XCircleIcon } from '../Icons';
-import { View, Text, StyleSheet } from 'react-native';
 
 interface StatusBadgeProps {
     status: ListingStatus | UserStatus;
@@ -28,13 +28,13 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
         icon: <ClockIcon color="#475569"/> 
     };
     
-    // FIX: Destructure bgColor and color instead of non-existent `classes`.
-    const { text, bgColor, color, icon } = displayInfo;
+    // FIX: Removed 'classes' from destructuring as it does not exist on displayInfo.
+    const { icon } = displayInfo;
 
     return (
-        <View style={[styles.badge, { backgroundColor: bgColor }]}>
+        <View style={[styles.badge, { backgroundColor: displayInfo.bgColor }]}>
             {React.cloneElement(icon, { width: 14, height: 14 })}
-            <Text style={[styles.text, { color: color }]}>{text}</Text>
+            <Text style={[styles.text, { color: displayInfo.color }]}>{displayInfo.text}</Text>
         </View>
     );
 };

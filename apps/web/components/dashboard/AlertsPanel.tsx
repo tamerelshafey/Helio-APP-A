@@ -3,7 +3,9 @@ import React, { useMemo } from 'react';
 import type { Alert } from '@helio/shared-logic';
 import { BellAlertIcon, UserPlusIcon, BuildingStorefrontIcon } from '../common/Icons';
 // FIX: Corrected import path for monorepo structure
-import { useUsers, useProperties } from '@helio/shared-logic';
+import { useUsers } from '@helio/shared-logic';
+// FIX: Corrected import path for monorepo structure
+import { useProperties } from '@helio/shared-logic';
 
 const formatRelativeTime = (dateString: string) => {
     const date = new Date(dateString);

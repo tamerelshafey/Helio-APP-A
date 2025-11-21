@@ -8,14 +8,15 @@ import ServicesScreen from '../screens/ServicesScreen';
 import ServiceListScreen from '../screens/ServiceListScreen';
 import ServiceDetailScreen from '../screens/ServiceDetailScreen';
 import PropertiesScreen from '../screens/PropertiesScreen';
+// FIX: Import the newly created PropertyDetailScreen component
 import PropertyDetailScreen from '../screens/PropertyDetailScreen';
 import CommunityScreen from '../screens/CommunityScreen';
 import EmergencyScreen from '../screens/EmergencyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+// FIX: Import the newly created NewsDetailScreen component
 import NewsDetailScreen from '../screens/NewsDetailScreen';
-import NewsScreen from '../screens/NewsScreen';
 
-import { HomeIcon, Squares2X2Icon, HomeModernIcon, ChatBubbleOvalLeftEllipsisIcon, ShieldExclamationIcon, UserCircleIcon, NewspaperIcon } from '../components/Icons';
+import { HomeIcon, Squares2X2Icon, HomeModernIcon, ChatBubbleOvalLeftEllipsisIcon, ShieldExclamationIcon, UserCircleIcon } from '../components/Icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,14 +31,13 @@ const screenOptions = {
         fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif-medium',
     },
     headerTitleAlign: 'center',
-    headerBackTitle: 'رجوع',
 };
 
 const HomeNavigator = () => (
     <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="HomeMain" component={HomeScreen} options={{ title: 'الرئيسية' }} />
         <Stack.Screen name="NewsDetail" component={NewsDetailScreen} options={{ title: 'تفاصيل الخبر' }} />
-        <Stack.Screen name="PropertyDetail" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
+        <Stack.Screen name="PropertyDetailFromHome" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
     </Stack.Navigator>
 );
 
@@ -55,14 +55,6 @@ const PropertiesNavigator = () => (
         <Stack.Screen name="PropertyDetail" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
     </Stack.Navigator>
 );
-
-const NewsNavigator = () => (
-    <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="NewsMain" component={NewsScreen} options={{ title: 'الأخبار' }} />
-        <Stack.Screen name="NewsDetail" component={NewsDetailScreen} options={({ route }) => ({ title: (route.params as any)?.newsTitle || 'تفاصيل الخبر' })} />
-    </Stack.Navigator>
-);
-
 
 const CommunityNavigator = () => (
     <Stack.Navigator screenOptions={screenOptions}>
@@ -87,7 +79,7 @@ const AppNavigator = () => {
                     if (route.name === 'HomeTab') return <HomeIcon {...iconProps} />;
                     if (route.name === 'ServicesTab') return <Squares2X2Icon {...iconProps} />;
                     if (route.name === 'PropertiesTab') return <HomeModernIcon {...iconProps} />;
-                    if (route.name === 'NewsTab') return <NewspaperIcon {...iconProps} />;
+                    if (route.name === 'CommunityTab') return <ChatBubbleOvalLeftEllipsisIcon {...iconProps} />;
                     if (route.name === 'EmergencyTab') return <ShieldExclamationIcon {...iconProps} />;
                     return null;
                 },
@@ -106,7 +98,7 @@ const AppNavigator = () => {
             <Tab.Screen name="HomeTab" component={HomeNavigator} options={{ title: 'الرئيسية' }} />
             <Tab.Screen name="ServicesTab" component={ServicesNavigator} options={{ title: 'الخدمات' }} />
             <Tab.Screen name="PropertiesTab" component={PropertiesNavigator} options={{ title: 'العقارات' }} />
-            <Tab.Screen name="NewsTab" component={NewsNavigator} options={{ title: 'الأخبار' }} />
+            <Tab.Screen name="CommunityTab" component={CommunityNavigator} options={{ title: 'المجتمع' }} />
             <Tab.Screen name="EmergencyTab" component={EmergencyNavigator} options={{ title: 'الطوارئ' }} />
         </Tab.Navigator>
     );

@@ -8,8 +8,11 @@ import AlertsPanel from '../components/dashboard/AlertsPanel';
 import UsersToVerify from '../components/dashboard/UsersToVerify';
 import Footer from '../components/common/Footer';
 import { UserIcon, MapIcon, WrenchScrewdriverIcon, ShieldExclamationIcon, HomeModernIcon, UserGroupIcon, BusIcon, NewspaperIcon, Bars3Icon } from '../components/common/Icons';
-// FIX: Corrected import paths for monorepo structure
-import { useData, useServices, useProperties, useNews, useUsers } from '@helio/shared-logic';
+import { useData } from '@helio/shared-logic';
+import { useServices } from '@helio/shared-logic';
+import { useProperties } from '@helio/shared-logic';
+import { useNews } from '@helio/shared-logic';
+import { useUsers } from '@helio/shared-logic';
 
 const DashboardView: React.FC = () => {
   const { emergencyContacts } = useData();

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { useUI } from '@helio/shared-logic';
 // FIX: Corrected import path for Icons
 import { CheckCircleIcon, XCircleIcon } from './Icons';
-// FIX: Corrected import paths for monorepo structure
 import type { ToastMessage } from '@helio/shared-logic';
 
 const Toast: React.FC<{ message: ToastMessage; onDismiss: (id: number) => void }> = ({ message, onDismiss }) => {

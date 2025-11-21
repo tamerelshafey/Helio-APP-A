@@ -153,7 +153,7 @@ const MyBusinessPage: React.FC = () => {
             </div>
             
             <Modal isOpen={isOfferModalOpen} onClose={() => setOfferModalOpen(false)} title={editingOffer ? "تعديل العرض" : "إضافة عرض جديد"}>
-                <OfferForm onClose={() => setOfferModalOpen(false)} onSave={handleSaveOffer} services={myServices} offer={editingOffer} />
+                <OfferForm onClose={() => setOfferModalOpen(false)} onSave={(data) => { handleSaveOffer(data); setOfferModalOpen(false); }} services={myServices} offer={editingOffer} />
             </Modal>
             
             {replyingToReview && (

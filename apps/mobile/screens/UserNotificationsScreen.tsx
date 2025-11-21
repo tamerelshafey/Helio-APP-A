@@ -1,22 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native';
 import { useNews, useUI } from '@helio/shared-logic';
-// FIX: Corrected import for BellIcon from local Icons file
 import { TrashIcon, BellIcon } from '../components/Icons';
-import EmptyState from '../components/common/EmptyState';
-import PageBanner from '../components/common/PageBanner';
 
 const UserNotificationsPage: React.FC = () => {
     const { notifications } = useNews();
-    const { showConfirmation, dismissedNotificationIds, dismissNotification, dismissAllNotifications } = useUI();
-
-    const handleDismissAll = () => {
-        // In React Native, Alert.alert is a common way to show confirmation.
-        // For consistency with web, a custom confirmation modal context would be better,
-        // but this is a quick fix.
-        const allIds = notifications.map(n => n.id);
-        dismissAllNotifications(allIds);
-    };
+    const { dismissedNotificationIds, dismissNotification, dismissAllNotifications } = useUI();
     
     const visibleNotifications = notifications
         .filter(n => !dismissedNotificationIds.has(n.id))
@@ -68,4 +57,5 @@ const styles = StyleSheet.create({
     emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     emptyText: { marginTop: 10, fontSize: 16, color: 'gray' },
 });
+
 export default UserNotificationsPage;

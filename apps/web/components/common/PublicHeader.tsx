@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// FIX: Corrected import path for monorepo structure
-import { useAuth, useUI, useNews } from '@helio/shared-logic';
+import { useAuth } from '@helio/shared-logic';
+import { useUI } from '@helio/shared-logic';
 import { BellIcon, SunIcon, MoonIcon, MagnifyingGlassIcon } from './Icons';
 import ProfileDropDown from './ProfileDropDown';
 import Logo from './Logo';
+import { useNews } from '@helio/shared-logic';
 import { prefetchMap } from './AnimatedRoutes';
 import GlobalSearchModal from './GlobalSearchModal';
 

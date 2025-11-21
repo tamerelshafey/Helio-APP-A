@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-// FIX: Corrected import path for monorepo structure
-import type { Property } from '@helio/shared-logic';
+import type { Property } from '../../../packages/shared-logic/types';
 import { MapPinIcon, PhoneIcon } from './Icons';
 
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
