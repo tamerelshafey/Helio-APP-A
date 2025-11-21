@@ -6,17 +6,17 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "projectDir": "apps/mobile"
+      "workingDir": "apps/mobile"
     },
     "preview": {
       "distribution": "internal",
-      "projectDir": "apps/mobile",
+      "workingDir": "apps/mobile",
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
-      "projectDir": "apps/mobile",
+      "workingDir": "apps/mobile",
       "android": {
         "buildType": "apk"
       }
