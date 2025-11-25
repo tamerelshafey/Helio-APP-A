@@ -41,7 +41,9 @@ const OfferForm: React.FC<{
     return (
         <View style={styles.container}>
             <ImageUploader images={image} onImagesChange={setImage} maxFiles={1} />
+            {/* FIX: Removed unsupported 'name' prop */}
             <InputField label="عنوان العرض" value={formData.title} onChangeText={text => handleChange('title', text)} />
+            {/* FIX: Removed unsupported 'name' prop */}
             <TextareaField label="وصف العرض" value={formData.description} onChangeText={text => handleChange('description', text)} />
             <Text style={styles.label}>الخدمة المرتبطة</Text>
             <Picker
@@ -51,8 +53,11 @@ const OfferForm: React.FC<{
             >
                 {services.map(s => <Picker.Item key={s.id} label={s.name} value={s.id} />)}
             </Picker>
+            {/* FIX: Removed unsupported 'name' prop */}
             <InputField label="كود الخصم (اختياري)" value={formData.promoCode} onChangeText={text => handleChange('promoCode', text)} />
+            {/* FIX: Removed unsupported 'name' prop */}
             <InputField label="تاريخ البدء" value={formData.startDate} onChangeText={text => handleChange('startDate', text)} />
+            {/* FIX: Removed unsupported 'name' prop */}
             <InputField label="تاريخ الانتهاء" value={formData.endDate} onChangeText={text => handleChange('endDate', text)} />
             <View style={styles.buttons}>
                 <Button onPress={onClose}>إلغاء</Button>

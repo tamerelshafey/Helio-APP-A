@@ -4,7 +4,8 @@ import Modal from './Modal';
 interface RejectReasonModalProps {
     onClose: () => void;
     onConfirm: (reason: string) => void;
-    itemType?: 'الإعلان' | 'الوظيفة';
+    // FIX: Added 'العرض' and 'البلاغ' to the itemType to support more rejection contexts.
+    itemType?: 'الإعلان' | 'الوظيفة' | 'العرض' | 'البلاغ';
 }
 
 const RejectReasonModal: React.FC<RejectReasonModalProps> = ({ onClose, onConfirm, itemType = 'الإعلان' }) => {

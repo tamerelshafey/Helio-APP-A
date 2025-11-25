@@ -10,7 +10,8 @@ import ImageUploader from '../components/common/ImageUploader';
 import type { AppUser, Theme } from '../types';
 import ServiceCard from '../components/common/ServiceCard';
 
-const EditProfileForm: React.FC<{ user: AppUser; onSave: (data: Omit<AppUser, 'id' | 'joinDate' | 'status' | 'password' | 'role'>) => void; onClose: () => void }> = ({ user, onSave, onClose }) => {
+// FIX: Corrected the type for the `onSave` prop to include the `id` field, which is required for updating the profile.
+const EditProfileForm: React.FC<{ user: AppUser; onSave: (data: Omit<AppUser, 'joinDate' | 'status' | 'password' | 'role'>) => void; onClose: () => void }> = ({ user, onSave, onClose }) => {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [avatar, setAvatar] = useState([user.avatar]);

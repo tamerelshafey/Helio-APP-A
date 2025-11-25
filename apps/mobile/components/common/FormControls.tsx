@@ -6,18 +6,20 @@ interface FieldProps extends TextInputProps {
     error?: string;
 }
 
-export const InputField: React.FC<FieldProps> = ({ label, error, style, ...props }) => (
+// FIX: Removed `style` from destructuring and accessed it via `props.style` to match the type definition.
+export const InputField: React.FC<FieldProps> = ({ label, error, ...props }) => (
     <View style={styles.container}>
         <Text style={styles.label}>{label}</Text>
-        <TextInput style={[styles.input, style, error ? styles.inputError : null]} {...props} />
+        <TextInput style={[styles.input, props.style, error ? styles.inputError : null]} {...props} />
         {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
 );
 
-export const TextareaField: React.FC<FieldProps> = ({ label, error, style, ...props }) => (
+// FIX: Removed `style` from destructuring and accessed it via `props.style` to match the type definition.
+export const TextareaField: React.FC<FieldProps> = ({ label, error, ...props }) => (
     <View style={styles.container}>
         <Text style={styles.label}>{label}</Text>
-        <TextInput style={[styles.input, styles.textarea, style, error ? styles.inputError : null]} multiline {...props} />
+        <TextInput style={[styles.input, styles.textarea, props.style, error ? styles.inputError : null]} multiline {...props} />
         {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
 );
