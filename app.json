@@ -1,51 +1,160 @@
+
+<content><![CDATA[
 {
-  "expo": {
-    "name": "Helio App",
-    "slug": "helio-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "https://i.ibb.co/bF0fJgS/favicon.png",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "https://i.ibb.co/bF0fJgS/favicon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#f1f5f9"
-    },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.helio.app",
-      "buildNumber": "1.0.0"
-    },
-    "android": {
-      "package": "com.helio.app",
-      "versionCode": 1,
-      "adaptiveIcon": {
-        "foregroundImage": "https://i.ibb.co/bF0fJgS/favicon.png",
-        "backgroundColor": "#f1f5f9"
-      }
-    },
-    "web": {
-      "favicon": "https://i.ibb.co/bF0fJgS/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "resizeMode": "contain",
-          "backgroundColor": "#f1f5f9"
-        }
-      ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "9186f11b-7942-4f34-b30b-c96422f8a0f4"
-      }
-    },
-    "updates": {
-      "url": "https://u.expo.dev/9186f11b-7942-4f34-b30b-c96422f8a0f4"
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    }
-  }
+"expo": {
+"name": "Helio App",
+"slug": "helio",
+"version": "1.0.0",
+"orientation": "portrait",
+"icon": "https://i.ibb.co/bF0fJgS/favicon.png",
+"userInterfaceStyle": "automatic",
+"splash": {
+"image": "https://i.ibb.co/bF0fJgS/favicon.png",
+"resizeMode": "contain",
+"backgroundColor": "#f1f5f9"
+},
+"ios": {
+"supportsTablet": true,
+"bundleIdentifier": "com.helio.app",
+"buildNumber": "1.0.0"
+},
+"android": {
+"package": "com.helio.app",
+"versionCode": 1,
+"adaptiveIcon": {
+"foregroundImage": "https://i.ibb.co/bF0fJgS/favicon.png",
+"backgroundColor": "#f1f5f9"
 }
+},
+"web": {
+"favicon": "https://i.ibb.co/bF0fJgS/favicon.png"
+},
+"plugins": [
+[
+"expo-splash-screen",
+{
+"resizeMode": "contain",
+"backgroundColor": "#f1f5f9"
+}
+]
+],
+"extra": {
+"eas": {
+"projectId": "9186f11b-7942-4f34-b30b-c96422f8a0f4"
+}
+},
+"updates": {
+"url": "https://u.expo.dev/9186f11b-7942-4f34-b30b-c96422f8a0f4"
+},
+"runtimeVersion": {
+"policy": "appVersion"
+}
+}
+}
+]]></content>
+</change>
+<change>
+<file>apps/mobile/app.json</file>
+<description>Update slug to 'helio' to match EAS project ID configuration</description>
+<content><![CDATA[
+{
+"expo": {
+"name": "Helio App",
+"slug": "helio",
+"version": "1.0.0",
+"orientation": "portrait",
+"icon": "https://i.ibb.co/bF0fJgS/favicon.png",
+"userInterfaceStyle": "automatic",
+"splash": {
+"image": "https://i.ibb.co/bF0fJgS/favicon.png",
+"resizeMode": "contain",
+"backgroundColor": "#f1f5f9"
+},
+"ios": {
+"supportsTablet": true,
+"bundleIdentifier": "com.helio.app",
+"buildNumber": "1.0.0"
+},
+"android": {
+"package": "com.helio.app",
+"versionCode": 1,
+"adaptiveIcon": {
+"foregroundImage": "https://i.ibb.co/bF0fJgS/favicon.png",
+"backgroundColor": "#f1f5f9"
+}
+},
+"web": {
+"favicon": "https://i.ibb.co/bF0fJgS/favicon.png"
+},
+"plugins": [
+[
+"expo-splash-screen",
+{
+"resizeMode": "contain",
+"backgroundColor": "#f1f5f9"
+}
+]
+],
+"extra": {
+"eas": {
+"projectId": "9186f11b-7942-4f34-b30b-c96422f8a0f4"
+}
+},
+"updates": {
+"url": "https://u.expo.dev/9186f11b-7942-4f34-b30b-c96422f8a0f4"
+},
+"runtimeVersion": {
+"policy": "appVersion"
+}
+}
+}
+]]></content>
+</change>
+<change>
+<file>eas.json</file>
+<description>Add appVersionSource to silence CLI warning</description>
+<content><![CDATA[
+{
+"cli": {
+"version": ">= 7.0.0",
+"appVersionSource": "remote"
+},
+"build": {
+"development": {
+"developmentClient": true,
+"distribution": "internal",
+"android": {
+"gradleCommand": ":app:assembleDebug"
+},
+"ios": {
+"simulator": true
+},
+"env": {
+"EXPO_PROJECT_ROOT": "./apps/mobile"
+}
+},
+"preview": {
+"distribution": "internal",
+"android": {
+"buildType": "apk"
+},
+"env": {
+"EXPO_PROJECT_ROOT": "./apps/mobile"
+}
+},
+"production": {
+"android": {
+"buildType": "apk"
+},
+"env": {
+"EXPO_PROJECT_ROOT": "./apps/mobile"
+}
+}
+},
+"submit": {
+"production": {}
+}
+}
+]]></content>
+</change>
+</changes>
