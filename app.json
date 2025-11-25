@@ -1,3 +1,52 @@
+
 {
-  "extends": "./apps/mobile/app.json"
+  "expo": {
+    "name": "Helio App",
+    "slug": "helio-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "https://i.ibb.co/bF0fJgS/favicon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "https://i.ibb.co/bF0fJgS/favicon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f1f5f9"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.helio.app",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.helio.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "https://i.ibb.co/bF0fJgS/favicon.png",
+        "backgroundColor": "#f1f5f9"
+      }
+    },
+    "web": {
+      "favicon": "https://i.ibb.co/bF0fJgS/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "resizeMode": "contain",
+          "backgroundColor": "#f1f5f9"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/00000000-0000-0000-0000-000000000000"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
 }
