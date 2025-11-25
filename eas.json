@@ -4,34 +4,24 @@
   },
   "build": {
     "development": {
+      "extends": "base",
       "developmentClient": true,
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      },
-      "env": {
-        "APP_VARIANT": "development"
-      },
-      "projectDir": "apps/mobile"
+      "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      },
-      "env": {
-        "APP_VARIANT": "preview"
-      },
-      "projectDir": "apps/mobile"
+      "extends": "base",
+      "distribution": "internal"
     },
     "production": {
+      "extends": "base"
+    },
+    "base": {
+      "env": {
+        "EXPO_PROJECT_ROOT": "./apps/mobile"
+      },
       "android": {
         "buildType": "apk"
-      },
-      "env": {
-        "APP_VARIANT": "production"
-      },
-      "projectDir": "apps/mobile"
+      }
     }
   },
   "submit": {

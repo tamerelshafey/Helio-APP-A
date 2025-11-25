@@ -11,7 +11,7 @@ const AuditLogPage: React.FC = () => {
     const [actionFilter, setActionFilter] = useState('all');
 
     const actionTypes = useMemo<string[]>(() => {
-        const types = new Set(auditLogs.map(log => log.action));
+        const types = new Set<string>(auditLogs.map(log => log.action));
         return ['all', ...Array.from(types)];
     }, [auditLogs]);
 
