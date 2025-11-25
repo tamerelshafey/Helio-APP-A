@@ -3,6 +3,14 @@
     "version": ">= 9.0.0"
   },
   "build": {
+    "base": {
+      "env": {
+        "EXPO_PROJECT_ROOT": "./apps/mobile"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
     "development": {
       "extends": "base",
       "developmentClient": true,
@@ -14,14 +22,6 @@
     },
     "production": {
       "extends": "base"
-    },
-    "base": {
-      "env": {
-        "EXPO_PROJECT_ROOT": "./apps/mobile"
-      },
-      "android": {
-        "buildType": "apk"
-      }
     }
   },
   "submit": {

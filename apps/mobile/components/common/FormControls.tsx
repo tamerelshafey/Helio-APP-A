@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TextInputProps } from 'react-native';
 
-interface FieldProps extends TextInputProps {
+interface Props {
     label: string;
     error?: string;
 }
+
+type FieldProps = TextInputProps & Props;
 
 export const InputField = ({ label, error, style, ...props }: FieldProps) => (
     <View style={styles.container}>
