@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "Helio App",
@@ -39,11 +38,11 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "00000000-0000-0000-0000-000000000000"
+        "projectId": "9186f11b-7942-4f34-b30b-c96422f8a0f4"
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/00000000-0000-0000-0000-000000000000"
+      "url": "https://u.expo.dev/9186f11b-7942-4f34-b30b-c96422f8a0f4"
     },
     "runtimeVersion": {
       "policy": "appVersion"
