@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { useData, CONTACT_INFO } from '@helio/shared-logic';
