@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,13 +9,23 @@ import ServicesScreen from '../screens/ServicesScreen';
 import ServiceListScreen from '../screens/ServiceListScreen';
 import ServiceDetailScreen from '../screens/ServiceDetailScreen';
 import PropertiesScreen from '../screens/PropertiesScreen';
-// FIX: Import the newly created PropertyDetailScreen component
 import PropertyDetailScreen from '../screens/PropertyDetailScreen';
 import CommunityScreen from '../screens/CommunityScreen';
+import PostDetailScreen from '../screens/PostDetailScreen';
 import EmergencyScreen from '../screens/EmergencyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-// FIX: Import the newly created NewsDetailScreen component
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import NewsDetailScreen from '../screens/NewsDetailScreen';
+
+// New Screens
+import MyBusinessScreen from '../screens/MyBusinessScreen';
+import MyOffersScreen from '../screens/MyOffersScreen';
+import NotificationSettingsScreen from '../screens/NotificationSettingsScreen';
+import FavoritesScreen from '../screens/FavoritesScreen';
+import UserNotificationsScreen from '../screens/UserNotificationsScreen';
+import CameraScreen from '../screens/CameraScreen';
+
 
 import { HomeIcon, Squares2X2Icon, HomeModernIcon, ChatBubbleOvalLeftEllipsisIcon, ShieldExclamationIcon, UserCircleIcon } from '../components/Icons';
 
@@ -22,22 +33,17 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const screenOptions = {
-    headerStyle: {
-        backgroundColor: '#FFFFFF',
-    },
+    headerStyle: { backgroundColor: '#FFFFFF' },
     headerTintColor: '#0F172A',
-    headerTitleStyle: {
-        fontWeight: 'bold',
-        fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif-medium',
-    },
-    headerTitleAlign: 'center',
+    headerTitleStyle: { fontWeight: 'bold', fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif-medium' },
+    headerTitleAlign: 'center' as const,
 };
 
 const HomeNavigator = () => (
     <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="HomeMain" component={HomeScreen} options={{ title: 'الرئيسية' }} />
         <Stack.Screen name="NewsDetail" component={NewsDetailScreen} options={{ title: 'تفاصيل الخبر' }} />
-        <Stack.Screen name="PropertyDetailFromHome" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
+        <Stack.Screen name="PropertyDetail" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
     </Stack.Navigator>
 );
 
@@ -59,6 +65,8 @@ const PropertiesNavigator = () => (
 const CommunityNavigator = () => (
     <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="CommunityMain" component={CommunityScreen} options={{ title: 'المجتمع' }} />
+        <Stack.Screen name="PostDetail" component={PostDetailScreen} options={{ title: 'تفاصيل المنشور' }} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'تسجيل الدخول' }} />
     </Stack.Navigator>
 );
 
@@ -68,6 +76,19 @@ const EmergencyNavigator = () => (
     </Stack.Navigator>
 );
 
+const ProfileNavigator = () => (
+    <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen name="ProfileMain" component={ProfileScreen} options={{ title: 'ملفي الشخصي' }} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'تسجيل الدخول' }} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'إنشاء حساب' }} />
+        <Stack.Screen name="MyBusiness" component={MyBusinessScreen} options={{ title: 'إدارة أعمالي' }} />
+        <Stack.Screen name="MyOffers" component={MyOffersScreen} options={{ title: 'عروضي' }} />
+        <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: 'إعدادات الإشعارات' }} />
+        <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: 'المفضلة' }} />
+        <Stack.Screen name="UserNotifications" component={UserNotificationsScreen} options={{ title: 'الإشعارات' }} />
+        <Stack.Screen name="Camera" component={CameraScreen} options={{ title: 'الكاميرا' }} />
+    </Stack.Navigator>
+);
 
 const AppNavigator = () => {
     return (
@@ -81,6 +102,7 @@ const AppNavigator = () => {
                     if (route.name === 'PropertiesTab') return <HomeModernIcon {...iconProps} />;
                     if (route.name === 'CommunityTab') return <ChatBubbleOvalLeftEllipsisIcon {...iconProps} />;
                     if (route.name === 'EmergencyTab') return <ShieldExclamationIcon {...iconProps} />;
+                    if (route.name === 'ProfileTab') return <UserCircleIcon {...iconProps} />;
                     return null;
                 },
                 tabBarActiveTintColor: '#0891b2',
@@ -100,6 +122,7 @@ const AppNavigator = () => {
             <Tab.Screen name="PropertiesTab" component={PropertiesNavigator} options={{ title: 'العقارات' }} />
             <Tab.Screen name="CommunityTab" component={CommunityNavigator} options={{ title: 'المجتمع' }} />
             <Tab.Screen name="EmergencyTab" component={EmergencyNavigator} options={{ title: 'الطوارئ' }} />
+            <Tab.Screen name="ProfileTab" component={ProfileNavigator} options={{ title: 'حسابي' }} />
         </Tab.Navigator>
     );
 };

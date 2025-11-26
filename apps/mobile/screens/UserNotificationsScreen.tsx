@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import { useNews, useUI } from '@helio/shared-logic';
 import { TrashIcon, BellIcon } from '../components/Icons';
 
@@ -13,49 +14,58 @@ const UserNotificationsPage: React.FC = () => {
     
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList
-                data={visibleNotifications}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => (
-                    <View style={styles.notificationCard}>
-                        <View style={{flex: 1}}>
-                            <Text style={styles.title}>{item.title}</Text>
-                            <Text style={styles.content}>{item.content}</Text>
-                        </View>
-                        <TouchableOpacity onPress={() => dismissNotification(item.id)}>
-                            <TrashIcon color="#9ca3af" width={20} height={20}/>
-                        </TouchableOpacity>
-                    </View>
+             <View style={styles.header}>
+                <Text style={styles.headerTitle}>الإشعارات</Text>
+                {visibleNotifications.length > 0 && (
+                    <TouchableOpacity onPress={() => dismissAllNotifications(notifications.map(n => n.id))} style={styles.clearButton}>
+                        <Text style={styles.clearText}>حذف الكل</Text>
+                    </TouchableOpacity>
                 )}
-                ListHeaderComponent={
-                    <View style={styles.header}>
-                        <Text style={styles.headerTitle}>الإشعارات</Text>
-                        {visibleNotifications.length > 0 && 
-                            <Button title="حذف الكل" color="#EF4444" onPress={() => dismissAllNotifications(notifications.map(n => n.id))} />
-                        }
-                    </View>
-                }
-                ListEmptyComponent={
-                    <View style={styles.emptyContainer}>
-                        <BellIcon color="#9ca3af" width={64} height={64} />
-                        <Text style={styles.emptyText}>لا توجد إشعارات جديدة.</Text>
-                    </View>
-                }
-                contentContainerStyle={{ flexGrow: 1 }}
-            />
+            </View>
+
+            {visibleNotifications.length > 0 ? (
+                <FlatList
+                    data={visibleNotifications}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => (
+                        <View style={styles.notificationCard}>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.title}>{item.title}</Text>
+                                <Text style={styles.content}>{item.content}</Text>
+                                <Text style={styles.date}>{new Date(item.startDate).toLocaleDateString('ar-EG')}</Text>
+                            </View>
+                            <TouchableOpacity onPress={() => dismissNotification(item.id)} style={styles.dismissButton}>
+                                <TrashIcon color="#94A3B8" width={18} height={18}/>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                    contentContainerStyle={styles.list}
+                />
+            ) : (
+                 <View style={styles.emptyContainer}>
+                    <BellIcon color="#E2E8F0" width={80} height={80} />
+                    <Text style={styles.emptyTitle}>لا توجد إشعارات جديدة</Text>
+                </View>
+            )}
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f1f5f9' },
-    header: { padding: 20, flexDirection: 'row-reverse', justifyContent: 'space-between', alignItems: 'center'},
-    headerTitle: { fontSize: 28, fontWeight: 'bold' },
-    notificationCard: { backgroundColor: 'white', padding: 15, marginHorizontal: 20, marginBottom: 10, borderRadius: 10, flexDirection: 'row-reverse', alignItems: 'center', gap: 10 },
-    title: { fontWeight: 'bold', fontSize: 16, textAlign: 'right' },
-    content: { color: 'gray', textAlign: 'right' },
+    container: { flex: 1, backgroundColor: '#F8FAFC' },
+    header: { flexDirection: 'row-reverse', justifyContent: 'space-between', alignItems: 'center', padding: 20, backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#E2E8F0' },
+    headerTitle: { fontSize: 24, fontWeight: 'bold', color: '#0F172A' },
+    clearButton: { padding: 8 },
+    clearText: { color: '#EF4444', fontWeight: '600' },
+    list: { padding: 16 },
+    notificationCard: { flexDirection: 'row-reverse', backgroundColor: 'white', padding: 16, borderRadius: 12, marginBottom: 12, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4, elevation: 2 },
+    textContainer: { flex: 1, marginLeft: 10 },
+    title: { fontWeight: 'bold', fontSize: 16, textAlign: 'right', color: '#1E293B', marginBottom: 4 },
+    content: { color: '#475569', textAlign: 'right', fontSize: 14, lineHeight: 20 },
+    date: { color: '#94A3B8', textAlign: 'right', fontSize: 12, marginTop: 8 },
+    dismissButton: { padding: 4, alignSelf: 'flex-start' },
     emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-    emptyText: { marginTop: 10, fontSize: 16, color: 'gray' },
+    emptyTitle: { marginTop: 20, fontSize: 18, fontWeight: '600', color: '#64748B' },
 });
 
 export default UserNotificationsPage;
