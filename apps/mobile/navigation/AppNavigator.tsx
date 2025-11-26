@@ -25,6 +25,9 @@ import NotificationSettingsScreen from '../screens/NotificationSettingsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import UserNotificationsScreen from '../screens/UserNotificationsScreen';
 import CameraScreen from '../screens/CameraScreen';
+import TransportationScreen from '../screens/TransportationScreen';
+import CityServicesGuideScreen from '../screens/CityServicesGuideScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 
 import { HomeIcon, Squares2X2Icon, HomeModernIcon, ChatBubbleOvalLeftEllipsisIcon, ShieldExclamationIcon, UserCircleIcon } from '../components/Icons';
@@ -44,6 +47,9 @@ const HomeNavigator = () => (
         <Stack.Screen name="HomeMain" component={HomeScreen} options={{ title: 'الرئيسية' }} />
         <Stack.Screen name="NewsDetail" component={NewsDetailScreen} options={{ title: 'تفاصيل الخبر' }} />
         <Stack.Screen name="PropertyDetail" component={PropertyDetailScreen} options={({ route }) => ({ title: (route.params as any)?.propertyTitle || 'تفاصيل العقار' })} />
+        <Stack.Screen name="Transportation" component={TransportationScreen} options={{ title: 'دليل المواصلات' }} />
+        <Stack.Screen name="CityServicesGuide" component={CityServicesGuideScreen} options={{ title: 'دليل خدمات المدينة' }} />
+        <Stack.Screen name="About" component={AboutScreen} options={{ title: 'عن التطبيق' }} />
     </Stack.Navigator>
 );
 
