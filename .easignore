@@ -1,0 +1,32 @@
+# Ignore node_modules in root and subdirectories to speed up upload
+node_modules/
+
+# Ignore git directory
+.git/
+
+# Ignore local expo folders
+.expo/
+
+# Ignore web application source and build artifacts
+apps/web/
+dist/
+web-build/
+
+# Ignore environment files
+.env
+.env.local
+*.env*
+
+# Ignore editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Explicitly whitelist the mobile app and shared packages
+!apps/mobile/
+!packages/
+!package.json
+!package-lock.json
+!eas.json
+!app.json
